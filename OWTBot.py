@@ -43,7 +43,7 @@ async def showparticipants():
 async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
-async def info(ctx):
+async def info():
     embed = discord.Embed(title="OWTBot", description="Namaskaram I am here to make your server experiance better!", color=0xeee657)
     
     # author info
