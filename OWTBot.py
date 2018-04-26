@@ -64,5 +64,6 @@ async def my_background_task():
     while not bot.is_closed:
         counter += 1
         await bot.say(counter)
-        await asyncio.sleep(60) # task runs every 60 seconds
+        await asyncio.sleep(5) # task runs every 60 seconds
+bot.loop.create_task(my_background_task())
 bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
