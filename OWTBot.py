@@ -2,7 +2,7 @@
 """
 Spyder Editor
 
-This is a temporary script file.
+Author: Arishtanemi
 """
 import random
 import discord
@@ -42,4 +42,4 @@ async def showparticipants():
 @bot.command()
 async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
-bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db-YtA.GnkNiUyR9Obsdcid-M2zQWrKKl4')
+bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
