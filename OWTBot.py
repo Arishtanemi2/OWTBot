@@ -42,4 +42,18 @@ async def showparticipants():
 @bot.command()
 async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
+@bot.command()
+async def info(ctx):
+    embed = discord.Embed(title="OWTBot", description="Namaskaram I am here to make your server experiance better!", color=0xeee657)
+    
+    # author info
+    embed.add_field(name="Author", value="Arishtanemi")
+    # command list for general users
+    embed.add_field(name="Commands:", value="Use the following to interact with me")
+    #add user to giveawaY COMMAND
+    embed.add_field(name="!add <Your Username>", value="Add your name as a giveaway participant")
+    #extra featureslist
+    embed.add_field(name="!dialogue", value="I tell a random Telugu Movie Dialogue")
+
+    await bot.say(embed=embed)
 bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
