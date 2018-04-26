@@ -5,7 +5,6 @@ Spyder Editor
 Author: Arishtanemi
 """
 import random
-import asyncio
 import discord
 from discord.ext import commands
 users=[]
@@ -58,12 +57,5 @@ async def info():
 
     await bot.say(embed=embed)
     
-async def my_background_task():
-    await bot.wait_until_ready()
-    counter = 0
-    while not bot.is_closed:
-        counter += 1
-        await bot.say(counter)
-        await asyncio.sleep(5) # task runs every 60 seconds
-bot.loop.create_task(my_background_task())
+
 bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
