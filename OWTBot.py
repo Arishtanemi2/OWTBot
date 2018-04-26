@@ -5,6 +5,7 @@ Spyder Editor
 Author: Arishtanemi
 """
 import random
+import asyncio
 import discord
 from discord.ext import commands
 users=[]
@@ -44,10 +45,10 @@ async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
 async def info():
-    embed = discord.Embed(title="OWTBot", description="Namaskaram I am here to make your server experiance better!", color=0xeee657)
+    embed = discord.Embed(title="OWTBot", description="Namaskaram! I am here to make your server experiance better!", color=0xeee657)
     
     # author info
-    embed.add_field(name="Author", value="Arishtanemi")
+    embed.add_field(name="Author:", value="Arishtanemi")
     # command list for general users
     embed.add_field(name="Commands:", value="Use the following to interact with me")
     #add user to giveawaY COMMAND
@@ -56,4 +57,12 @@ async def info():
     embed.add_field(name="!dialogue", value="I tell a random Telugu Movie Dialogue")
 
     await bot.say(embed=embed)
+    
+async def my_background_task():
+    await bot.wait_until_ready()
+    counter = 0
+    while not bot.is_closed:
+        counter += 1
+        await bot.say(counter)
+        await asyncio.sleep(60) # task runs every 60 seconds
 bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
