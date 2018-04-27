@@ -50,7 +50,9 @@ async def info():
     embed.add_field(name="Author:", value="Arishtanemi")
     # command list for general users
     await bot.say(embed=embed)
-    
+@bot.command()
+async def startscrim(self,message,args):
+       await bot.say(message.author)  
 @bot.command()
 async def help():
     embed = discord.Embed(title="My Commands", description="Use the following to interact with me", color=0x0080ff)
