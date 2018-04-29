@@ -6,7 +6,8 @@ Author: Arishtanemi
 """
 import random
 import discord
-from discord.ext import commands
+from discord.ext import commands,Game
+
 users=[]
 password="AMEIZING"
 f = open('participants.txt', 'r')
@@ -25,6 +26,7 @@ bot.remove_command('help')
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
+    await bot.change_presence(game=Game(name="Happy Diwali Folks"))
 @bot.command()
 async def giveaway(pas: str):
     if pas==password:
@@ -87,4 +89,6 @@ async def help():
 @bot.command()
 async def bored():
        await bot.say("http://imgur.com/random")
+       
+
 bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.DccrBA.ab5nfSvb04zL6NQPBz4fGiqZq4w')
