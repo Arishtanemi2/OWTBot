@@ -47,7 +47,7 @@ async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
 async def info():
-    embed = discord.Embed(title="OWTBot", description="Namaskaram! I am here to make your server experience better!", color=0xeee657)
+    embed = discord.Embed(title="Chitti", description="Hi! I am Chitti the Bot, Memory 44.5 MegaByte, Length 86 lines", color=0xeee657)
     
     # author info
     embed.add_field(name="Author:", value="Arishtanemi")
@@ -71,15 +71,20 @@ async def showscrims():
 @bot.command()
 async def help():
     embed = discord.Embed(title="My Commands", description="Use the following to interact with me", color=0x0080ff)
-    #add user to giveawaY COMMAND
+    #main COMMANDS
     embed.add_field(name="!add <Your Username>", value="Add your name as a giveaway participant")
+    embed.add_field(name="!startscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: !startscrim QuickPlay 7PM")
+    embed.add_field(name="!showscrims", value="Show all the Scheduled scrims")
     #extra featureslist
+    
     embed.add_field(name= "!bored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
     embed.add_field(name="!dialogue", value="I tell a random Telugu Movie Dialogue")
-
+    #utility functions
+    embed.add_field(name="!info", value="Show some info about me")
+    embed.add_field(name="!help", value="show the help menu")
     await bot.say(embed=embed)
     
 @bot.command()
 async def bored():
        await bot.say("http://imgur.com/random")
-bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.Db9F0w.kxrmOB_5zYr3713w_MI3pL6JFGI')
+bot.run('NDM3NTAzNDE4ODAyNjM0NzUy.DccrBA.ab5nfSvb04zL6NQPBz4fGiqZq4w')
