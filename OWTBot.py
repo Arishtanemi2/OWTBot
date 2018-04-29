@@ -6,7 +6,8 @@ Author: Arishtanemi
 """
 import random
 import discord
-from discord.ext import commands,Game
+from discord.ext import commands
+from discord import Game
 
 users=[]
 password="AMEIZING"
