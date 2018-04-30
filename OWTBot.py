@@ -68,6 +68,8 @@ async def startscrim(ctx,play:str,time:str):
 @bot.command()
 async def showscrims():
     embed = discord.Embed(title="Scrims Scheduled", description="", color=0xff0000)
+    if(scrims.__len__()==0):
+        embed.add_field(name="No Scrims Scheduled", value="")
     for i in range(0,scrims.__len__()):
         embed.add_field(name=str(i+1), value=str(scrims[i]))
     await bot.say(embed=embed)
