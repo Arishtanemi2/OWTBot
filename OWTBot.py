@@ -10,7 +10,7 @@ from discord.ext import commands
 from discord import Game
 
 users=[]
-password="AMEIZING"
+password="NaiBolteJao"
 f = open('participants.txt', 'r')
 users = list(f)
 f.close();
