@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-
 Author: Arishtanemi
 """
 import random
@@ -13,13 +11,13 @@ users=[]
 password="NaiBolteJao"
 f = open('participants.txt', 'r')
 users = list(f)
-f.close();
+f.close()
 f = open('dialogues.txt', 'r')
 dialogues = list(f)
-f.close();
+f.close()
 f = open('scrims.txt', 'r')
 scrims = list(f)
-f.close();
+f.close()
 bot = commands.Bot(command_prefix='!', description='')
 bot.remove_command('help')
 
@@ -27,7 +25,8 @@ bot.remove_command('help')
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
-    await bot.change_presence(game=Game(name="Happy Diwali Folks"))
+    activity = discord.Game(name="Happy Diwali folks")
+    await bot.change_presence(status=discord.Status.idle, activity=activity)
 @bot.command()
 async def giveaway(pas: str):
     if pas==password:
@@ -39,7 +38,7 @@ async def add(a: str):
     users.append(a)
     f = open('participants.txt', 'a')
     f.write(a+'\n') 
-    f.close();
+    f.close()
     await bot.say('added '+ a)
 @bot.command()
 async def showparticipants():
@@ -50,7 +49,7 @@ async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
 async def info():
-    embed = discord.Embed(title="Chitti", description="Hi! I am Chitti the Bot, Memory 44.5 MegaByte, Length 86 lines", color=0xeee657)
+    embed = discord.Embed(title="Chitti", description="Hi! I am Chitti the Bot, Memory 44.5 MegaByte, Length 95 lines", color=0xeee657)
     
     # author info
     embed.add_field(name="Author:", value="Arishtanemi")
@@ -60,10 +59,10 @@ async def info():
 async def startscrim(ctx,play:str,time:str):
     msg = '{0.author.mention} wants to play '.format(ctx.message)
     save= '{0.author.mention}'.format(ctx.message)
-    f=open('scrims.txt','a+');
+    f=open('scrims.txt','a+')
     f.write(save+' '+play+' '+time+'\n')
     scrims.append(save+' '+play+' '+time)
-    f.close();
+    f.close()
     await bot.say(msg+play+' at '+time)
 @bot.command()
 async def showscrims():
@@ -94,4 +93,4 @@ async def bored():
        await bot.say("http://imgur.com/random")
        
 
-bot.run(token)
+bot.run("NDM3NTAzNDE4ODAyNjM0NzUy.XU-q3Q.hekozl3MTPAG4ISGxvp1q-kFJh0")
