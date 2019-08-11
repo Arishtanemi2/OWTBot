@@ -93,4 +93,4 @@ async def bored():
        await bot.say("http://imgur.com/random")
        
 
-bot.run("NDM3NTAzNDE4ODAyNjM0NzUy.XU-q3Q.hekozl3MTPAG4ISGxvp1q-kFJh0")
+bot.run("NDM3NTAzNDE4ODAyNjM0NzUy.XU-w9A.4G4e-OPye_-n7GQ5TI499Zz2XEU")
