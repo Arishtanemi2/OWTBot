@@ -18,15 +18,14 @@ f.close()
 f = open('scrims.txt', 'r')
 scrims = list(f)
 f.close()
-bot = commands.Bot(command_prefix='!', description='')
+bot = commands.Bot(command_prefix='#', description='')
 bot.remove_command('help')
 
 @bot.event
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
-    activity = discord.Game(name="Happy Diwali folks")
-    await bot.change_presence(status=discord.Status.idle, activity=activity)
+    await bot.change_presence(game=Game(name="Happy Diwali Folks"))
 @bot.command()
 async def giveaway(pas: str):
     if pas==password:
@@ -76,16 +75,16 @@ async def showscrims():
 async def help():
     embed = discord.Embed(title="My Commands", description="Use the following to interact with me", color=0x0080ff)
     #main COMMANDS
-    embed.add_field(name="!add <Your Username>", value="Add your name as a giveaway participant")
-    embed.add_field(name="!startscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: !startscrim QuickPlay 7PM")
-    embed.add_field(name="!showscrims", value="Show all the Scheduled scrims")
+    embed.add_field(name="#add <Your Username>", value="Add your name as a giveaway participant")
+    embed.add_field(name="#startscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: #startscrim QuickPlay 7PM")
+    embed.add_field(name="#showscrims", value="Show all the Scheduled scrims")
     #extra featureslist
     
-    embed.add_field(name= "!bored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
-    embed.add_field(name="!dialogue", value="I tell a random Telugu Movie Dialogue")
+    embed.add_field(name= "#bored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
+    embed.add_field(name="#dialogue", value="I tell a random Telugu Movie Dialogue")
     #utility functions
-    embed.add_field(name="!info", value="Show some info about me")
-    embed.add_field(name="!help", value="show the help menu")
+    embed.add_field(name="#info", value="Show some info about me")
+    embed.add_field(name="#help", value="show the help menu")
     await bot.say(embed=embed)
     
 @bot.command()
