@@ -8,7 +8,7 @@ from discord.ext import commands
 from discord import Game
 
 users=[]
-password="NaiBolteJao"
+password="Gochi"
 f = open('participants.txt', 'r')
 users = list(f)
 f.close()
@@ -18,14 +18,14 @@ f.close()
 f = open('scrims.txt', 'r')
 scrims = list(f)
 f.close()
-bot = commands.Bot(command_prefix='#', description='')
+bot = commands.Bot(command_prefix='gg', description='')
 bot.remove_command('help')
 
 @bot.event
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
-    await bot.change_presence(game=Game(name="Happy Diwali Folks"))
+    await bot.change_presence(game=Game(name="Gochi Gang"))
 @bot.command()
 async def giveaway(pas: str):
     if pas==password:
@@ -48,7 +48,7 @@ async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
 async def info():
-    embed = discord.Embed(title="Chitti", description="Hi! I am Chitti the Bot, Memory 44.5 MegaByte, Length 95 lines", color=0xeee657)
+    embed = discord.Embed(title="Ganesh Gaitonde", description="Jaake dekh file main matherchod kis bhagwan ka naam likha hain", color=0xeee657)
     
     # author info
     embed.add_field(name="Author:", value="Arishtanemi")
@@ -75,16 +75,16 @@ async def showscrims():
 async def help():
     embed = discord.Embed(title="My Commands", description="Use the following to interact with me", color=0x0080ff)
     #main COMMANDS
-    embed.add_field(name="#add <Your Username>", value="Add your name as a giveaway participant")
-    embed.add_field(name="#startscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: #startscrim QuickPlay 7PM")
-    embed.add_field(name="#showscrims", value="Show all the Scheduled scrims")
+    embed.add_field(name="ggadd <Your Username>", value="Add your name as a giveaway participant")
+    embed.add_field(name="ggstartscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: ggstartscrim QuickPlay 7PM")
+    embed.add_field(name="ggshowscrims", value="Show all the Scheduled scrims")
     #extra featureslist
     
-    embed.add_field(name= "#bored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
-    embed.add_field(name="#dialogue", value="I tell a random Telugu Movie Dialogue")
+    embed.add_field(name= "ggbored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
+    embed.add_field(name="ggdialogue", value="Apne Andar ke Gaitonde ko jagao")
     #utility functions
-    embed.add_field(name="#info", value="Show some info about me")
-    embed.add_field(name="#help", value="show the help menu")
+    embed.add_field(name="gginfo", value="Show some info about me")
+    embed.add_field(name="gghelp", value="show the help menu")
     await bot.say(embed=embed)
     
 @bot.command()
