@@ -6,4 +6,3 @@ chardet
 requests
 praw
 asyncio
-json
