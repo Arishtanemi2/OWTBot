@@ -6,7 +6,10 @@ import random
 import discord
 from discord.ext import commands
 from discord import Game
-
+import asyncio
+import praw
+import requests
+import json
 users=[]
 password="Gochi"
 f = open('participants.txt', 'r')
@@ -20,6 +23,10 @@ scrims = list(f)
 f.close()
 bot = commands.Bot(command_prefix='gg', description='')
 bot.remove_command('help')
+reddit = praw.Reddit(client_id='VxdjW8xlme18VA',
+                     client_secret='I1uKbHIxRx0LEeZCT_EXvyL6Y4M',
+                     user_agent='Discord:1234:0.6')
+print(reddit.read_only)
 
 @bot.event
 async def on_ready():
@@ -90,6 +97,29 @@ async def help():
 @bot.command()
 async def bored():
        await bot.say("http://imgur.com/random")
-       
+
+@bot.command()
+async def r6meme():       
+    subreddit = reddit.subreddit('shittyrainbow6')
+    rand=random.randrange(0,10)
+    i=0
+    for submission in subreddit.new(limit=10):
+        if rand==i:
+            await bot.say(submission.title)  
+            await bot.say(submission.url)
+        i+=1
+
+
+@bot.command()
+async def r6sstats(user : str):
+    request = requests.get('https://r6tab.com/api/search.php?platform=uplay&search='+user, auth=('', ''))
+    data=json.loads(json.dumps(request.json()))
+    embed = discord.Embed(title=user, description="Statistics", color=0x0080ff)
+    embed.add_field(name="Username", value=data['results'][0]['p_name'])
+    embed.add_field(name="Level", value=data['results'][0]['p_level'])
+    embed.add_field(name="K/D", value=data['results'][0]['kd'])
+    embed.add_field(name="MMR", value=data['results'][0]['p_currentmmr'])
+    embed.add_field(name="Rank", value=data['results'][0]['p_currentrank'])
+    await bot.say(embed=embed)
 
 bot.run("NDM3NTAzNDE4ODAyNjM0NzUy.XU-w9A.4G4e-OPye_-n7GQ5TI499Zz2XEU")

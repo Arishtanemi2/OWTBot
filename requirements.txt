@@ -3,3 +3,7 @@ discord.py[voice] == 0.16.0
 aiohttp
 websockets
 chardet
+requests
+praw
+asyncio
+json
