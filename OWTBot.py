@@ -109,6 +109,9 @@ async def r6meme():
             await bot.say(submission.url)
         i+=1
 
+@bot.command()
+async def neemkapattakadwahain():
+    await bot.say("Ubisoft gandu Bhadwa hain")
 
 @bot.command()
 async def r6sstats(user : str):
