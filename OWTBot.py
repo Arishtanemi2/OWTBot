@@ -86,8 +86,9 @@ async def help():
     embed.add_field(name="ggstartscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: ggstartscrim QuickPlay 7PM")
     embed.add_field(name="ggshowscrims", value="Show all the Scheduled scrims")
     #extra featureslist
-    
     embed.add_field(name= "ggbored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
+    embed.add_field(name= "ggr6meme",value="Fetches an R6 meme")
+    embed.add_field(name= "ggr6sstats <player name>",value="Fetches the in-game Rainbow 6 siege stats of the player mentioned")
     embed.add_field(name="ggdialogue", value="Apne Andar ke Gaitonde ko jagao")
     #utility functions
     embed.add_field(name="gginfo", value="Show some info about me")
@@ -117,10 +118,20 @@ async def neemkapattakadwahain():
 async def r6sstats(user : str):
     request = requests.get('https://r6tab.com/api/search.php?platform=uplay&search='+user, auth=('', ''))
     data=json.loads(json.dumps(request.json()))
+    fullrequest = requests.get('https://r6tab.com/api/player.php?p_id='+data['results'][0]['p_id'], auth=('', ''))
+    fulldata=json.loads(json.dumps(fullrequest.json()))
     embed = discord.Embed(title=user, description="Statistics", color=0x0080ff)
     embed.add_field(name="Username", value=data['results'][0]['p_name'])
     embed.add_field(name="Level", value=data['results'][0]['p_level'])
-    embed.add_field(name="K/D", value=data['results'][0]['kd'])
+    embed.add_field(name="Casual Time Played", value=fulldata['data'][5])
+    embed.add_field(name="Casual Kills", value=fulldata['data'][6])
+    embed.add_field(name="Casual Deaths", value=fulldata['data'][7])
+    embed.add_field(name="Casual K/D", value=round(fulldata['data'][6]/fulldata['data'][7],4))
+    embed.add_field(name="Casual wins", value=fulldata['data'][8])
+    embed.add_field(name="Casual losses", value=fulldata['data'][9])
+    embed.add_field(name="Total Bullets", value=fulldata['data'][16])
+    embed.add_field(name="Total Headshots", value=fulldata['data'][17])
+    embed.add_field(name="Total Suicides :P", value=fulldata['data'][20])
     embed.add_field(name="MMR", value=data['results'][0]['p_currentmmr'])
     embed.add_field(name="Rank", value=data['results'][0]['p_currentrank'])
     await bot.say(embed=embed)
