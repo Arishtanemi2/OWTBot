@@ -7,3 +7,4 @@ requests
 praw
 asyncio
 youtube_dl
+pynacl
