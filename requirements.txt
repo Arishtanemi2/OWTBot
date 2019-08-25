@@ -1,5 +1,5 @@
 discord.py==0.16.12
-discord.py[voice] == 0.16.0
+discord.py[voice]==0.16.0
 aiohttp
 websockets
 chardet
