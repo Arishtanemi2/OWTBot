@@ -5,6 +5,6 @@ websockets
 chardet
 requests
 praw
-asyncio==0.4.1
+asyncio
 youtube_dl
 pynacl
