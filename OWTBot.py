@@ -111,12 +111,11 @@ async def leave(ctx):
 @bot.command(pass_context=True)
 async def play(ctx,searchstring:str):
     channel=ctx.message.author.voice.voice_channel
-    '''
     if channel== None:
         await bot.say("BC gand main chatri dal ke kholega pehle voice channel pe to aa")
-    else:
+    voice_client=bot.voice_client_in(server)
+    if voice_client==None:
         await bot.join_voice_channel(channel)
-    '''
     server=ctx.message.server
     voice_client=bot.voice_client_in(server)
     query_string = urllib.parse.urlencode({"search_query" : searchstring})
