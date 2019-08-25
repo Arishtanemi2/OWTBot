@@ -111,6 +111,7 @@ async def leave(ctx):
 @bot.command(pass_context=True)
 async def play(ctx,searchstring:str):
     channel=ctx.message.author.voice.voice_channel
+    server=ctx.message.server
     if channel== None:
         await bot.say("BC gand main chatri dal ke kholega pehle voice channel pe to aa")
     voice_client=bot.voice_client_in(server)
