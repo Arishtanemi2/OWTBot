@@ -6,3 +6,6 @@ chardet
 requests
 praw
 asyncio
+youtube_dl
+re
+urllib

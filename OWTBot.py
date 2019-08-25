@@ -10,7 +10,13 @@ import asyncio
 import praw
 import requests
 import json
+import youtube_dl
+import urllib.request
+import urllib.parse
+import re
+
 users=[]
+players={}
 password="Gochi"
 f = open('participants.txt', 'r')
 users = list(f)
@@ -21,7 +27,8 @@ f.close()
 f = open('scrims.txt', 'r')
 scrims = list(f)
 f.close()
-bot = commands.Bot(command_prefix='gg', description='')
+botprefix="gg"
+bot = commands.Bot(command_prefix=botprefix, description='')
 bot.remove_command('help')
 reddit = praw.Reddit(client_id='VxdjW8xlme18VA',
                      client_secret='I1uKbHIxRx0LEeZCT_EXvyL6Y4M',
@@ -61,6 +68,47 @@ async def info():
     embed.add_field(name="Author:", value="Arishtanemi")
     # command list for general users
     await bot.say(embed=embed)
+
+
+#---------------------------------------------------------------------MUSIC SECTION-------------------------------------------------------------------
+@bot.command(pass_context=True)
+async def join(ctx):
+    channel=ctx.message.author.voice.voice_channel
+    await bot.join_voice_channel(channel)
+
+@bot.command(pass_context=True)
+async def leave(ctx):
+    server=ctx.message.server
+    voice_client=bot.voice_client_in(server)
+    await voice_client.disconnect()
+
+@bot.command(pass_context=True)
+async def play(ctx,searchstring:str):
+    server=ctx.message.server
+    voice_client=bot.voice_client_in(server)
+    query_string = urllib.parse.urlencode({"search_query" : searchstring})
+    html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
+    search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
+    player= await voice_client.create_ytdl_player("http://www.youtube.com/watch?v=" + search_results[0])
+    players[server.id]=player
+    player.start()
+
+@bot.command(pass_context=True)
+async def pause(ctx):
+    id=ctx.message.server.id
+    players[id].pause()
+
+@bot.command(pass_context=True)
+async def stop(ctx):
+    id=ctx.message.server.id
+    players[id].stop()
+
+
+@bot.command(pass_context=True)
+async def resume(ctx):
+    id=ctx.message.server.id
+    players[id].resume()
+
 @bot.command(pass_context=True)
 async def startscrim(ctx,play:str,time:str):
     msg = '{0.author.mention} wants to play '.format(ctx.message)
@@ -70,6 +118,7 @@ async def startscrim(ctx,play:str,time:str):
     scrims.append(save+' '+play+' '+time)
     f.close()
     await bot.say(msg+play+' at '+time)
+
 @bot.command()
 async def showscrims():
     embed = discord.Embed(title="Scrims Scheduled", description="", color=0xff0000)
@@ -78,21 +127,22 @@ async def showscrims():
     for i in range(0,scrims.__len__()):
         embed.add_field(name=str(i+1), value=str(scrims[i]))
     await bot.say(embed=embed)
+
 @bot.command()
 async def help():
     embed = discord.Embed(title="My Commands", description="Use the following to interact with me", color=0x0080ff)
     #main COMMANDS
-    embed.add_field(name="ggadd <Your Username>", value="Add your name as a giveaway participant")
-    embed.add_field(name="ggstartscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: ggstartscrim QuickPlay 7PM")
-    embed.add_field(name="ggshowscrims", value="Show all the Scheduled scrims")
+    embed.add_field(name=botprefix+"add <Your Username>", value="Add your name as a giveaway participant")
+    embed.add_field(name=botprefix+"startscrim <game-mode> <Time>", value="Start a scrim for others to join Ex: ggstartscrim QuickPlay 7PM")
+    embed.add_field(name=botprefix+"showscrims", value="Show all the Scheduled scrims")
     #extra featureslist
-    embed.add_field(name= "ggbored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
-    embed.add_field(name= "ggr6meme",value="Fetches an R6 meme")
-    embed.add_field(name= "ggr6sstats <player name>",value="Fetches the in-game Rainbow 6 siege stats of the player mentioned")
-    embed.add_field(name="ggdialogue", value="Apne Andar ke Gaitonde ko jagao")
+    embed.add_field(name=botprefix+ "bored",value="Bored or server dead? Fetches a random GIF to keep you entertained")
+    embed.add_field(name= botprefix+"r6meme",value="Fetches an R6 meme")
+    embed.add_field(name= botprefix+"r6sstats <player name>",value="Fetches the in-game Rainbow 6 siege stats of the player mentioned")
+    embed.add_field(name=botprefix+"dialogue", value="Apne Andar ke Gaitonde ko jagao")
     #utility functions
-    embed.add_field(name="gginfo", value="Show some info about me")
-    embed.add_field(name="gghelp", value="show the help menu")
+    embed.add_field(name=botprefix+"info", value="Show some info about me")
+    embed.add_field(name=botprefix+"help", value="show the help menu")
     await bot.say(embed=embed)
     
 @bot.command()
