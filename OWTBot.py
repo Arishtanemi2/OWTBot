@@ -37,8 +37,7 @@ reddit = praw.Reddit(client_id='VxdjW8xlme18VA',
                      client_secret='I1uKbHIxRx0LEeZCT_EXvyL6Y4M',
                      user_agent='Discord:1234:0.6')
 print(reddit.read_only)
-if not discord.opus.is_loaded():
-    discord.opus.load_opus('opus')
+
 
 @bot.event
 async def on_ready():
