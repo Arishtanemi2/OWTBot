@@ -102,9 +102,9 @@ async def bored():
 @bot.command()
 async def r6meme():       
     subreddit = reddit.subreddit('shittyrainbow6')
-    rand=random.randrange(0,10)
+    rand=random.randrange(0,50)
     i=0
-    for submission in subreddit.new(limit=10):
+    for submission in subreddit.new(limit=50):
         if rand==i:
             await bot.say(submission.title)  
             await bot.say(submission.url)
