@@ -114,7 +114,7 @@ async def play(ctx,searchstring="",*args):
     if searchstring=="":
         id=ctx.message.server.id
         players[id].resume()
-    for arg in args":
+    for arg in args:
         searchstring+=" "+arg
     channel=ctx.message.author.voice.voice_channel
     server=ctx.message.server
@@ -221,7 +221,7 @@ async def r6meme():
         i+=1
 
 @bot.command()
-async def gaali(name str):
+async def gaali(name :str):
     await bot.say("Neem ka patta kadwa hain "+ name+ " gandu Bhadwa hain")
 
 @bot.command()
