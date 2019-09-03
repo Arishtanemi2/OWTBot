@@ -110,7 +110,12 @@ async def leave(ctx):
     await voice_client.disconnect()
 
 @bot.command(pass_context=True)
-async def play(ctx,searchstring:str):
+async def play(ctx,searchstring="",*args):
+    if searchstring=="":
+        id=ctx.message.server.id
+        players[id].resume()
+    for arg in args":
+        searchstring+=" "+arg
     channel=ctx.message.author.voice.voice_channel
     server=ctx.message.server
     if channel== None:
@@ -216,8 +221,8 @@ async def r6meme():
         i+=1
 
 @bot.command()
-async def neemkapattakadwahain():
-    await bot.say("Ubisoft gandu Bhadwa hain")
+async def gaali(name str):
+    await bot.say("Neem ka patta kadwa hain "+ name+ " gandu Bhadwa hain")
 
 @bot.command()
 async def r6sstats(user : str):
