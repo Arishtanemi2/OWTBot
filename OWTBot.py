@@ -114,6 +114,7 @@ async def play(ctx,searchstring="",*args):
     if searchstring=="":
         id=ctx.message.server.id
         players[id].resume()
+        return
     for arg in args:
         searchstring+=" "+arg
     channel=ctx.message.author.voice.voice_channel
@@ -151,7 +152,9 @@ async def resume(ctx):
     players[id].resume()
 
 @bot.command(pass_context=True)
-async def queue(ctx,searchstring:str):
+async def queue(ctx,searchstring="",*args):
+    for arg in args:
+        searchstring+=" "+arg
     server=ctx.message.server
     voice_client=bot.voice_client_in(server)
     query_string = urllib.parse.urlencode({"search_query" : searchstring})
