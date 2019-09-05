@@ -217,7 +217,29 @@ async def r6meme():
     subreddit = reddit.subreddit('shittyrainbow6')
     rand=random.randrange(0,50)
     i=0
-    for submission in subreddit.new(limit=50):
+    for submission in subreddit.hot(limit=50):
+        if rand==i:
+            await bot.say(submission.title)  
+            await bot.say(submission.url)
+        i+=1
+
+@bot.command()
+async def meme():       
+    subreddit = reddit.subreddit('memes')
+    rand=random.randrange(0,50)
+    i=0
+    for submission in subreddit.hot(limit=50):
+        if rand==i:
+            await bot.say(submission.title)  
+            await bot.say(submission.url)
+        i+=1
+
+@bot.command()
+async def boysmeme():       
+    subreddit = reddit.subreddit('theboys')
+    rand=random.randrange(0,50)
+    i=0
+    for submission in subreddit.hot(limit=50):
         if rand==i:
             await bot.say(submission.title)  
             await bot.say(submission.url)
