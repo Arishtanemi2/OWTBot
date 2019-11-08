@@ -1,2 +1,2 @@
 # OWTBot
-A Discord bot i created for the Overwatch Telugu Server
+A fully functional discord bot made for server management, music, trivia and much more
