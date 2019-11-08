@@ -20,7 +20,7 @@ import re
 users=[]
 players={}
 queues={}
-password="Gochi"
+password="pass"
 f = open('participants.txt', 'r')
 users = list(f)
 f.close()
@@ -30,7 +30,7 @@ f.close()
 f = open('scrims.txt', 'r')
 scrims = list(f)
 f.close()
-botprefix="gg"
+botprefix="!"
 bot = commands.Bot(command_prefix=botprefix, description='')
 bot.remove_command('help')
 reddit = praw.Reddit(client_id='VxdjW8xlme18VA',
@@ -43,7 +43,7 @@ print(reddit.read_only)
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
-    await bot.change_presence(game=Game(name="Gochi Gang"))
+    await bot.change_presence(game=Game(name="Beep Boop"))
 
 #---------------------------------------------------------------------Game SECTION-------------------------------------------------------------------
 @bot.command()
@@ -68,7 +68,7 @@ async def dialogue():
        await bot.say(dialogues[random.randrange(0,dialogues.__len__())])
 @bot.command()
 async def info():
-    embed = discord.Embed(title="Ganesh Gaitonde", description="Jaake dekh file main matherchod kis bhagwan ka naam likha hain", color=0xeee657)
+    embed = discord.Embed(title="I am a simple bot", description="", color=0xeee657)
     
     # author info
     embed.add_field(name="Author:", value="Arishtanemi")
@@ -99,7 +99,7 @@ async def showscrims():
 async def join(ctx):
     channel=ctx.message.author.voice.voice_channel
     if channel== None:
-        await bot.say("BC gand main chatri dal ke kholega pehle voice channel pe to aa")
+        await bot.say("you are not connected to a voice channel")
     else:
         await bot.join_voice_channel(channel)
 
@@ -120,7 +120,7 @@ async def play(ctx,searchstring="",*args):
     channel=ctx.message.author.voice.voice_channel
     server=ctx.message.server
     if channel== None:
-        await bot.say("BC gand main chatri dal ke kholega pehle voice channel pe to aa")
+        await bot.say("you are not connected to a voice channel")
     voice_client=bot.voice_client_in(server)
     if voice_client==None:
         await bot.join_voice_channel(channel)
